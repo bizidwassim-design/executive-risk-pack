@@ -15,8 +15,9 @@ SHEETS = ["Summary", "CSF Profile", "Top Risks", "Heat Map", "KRIs", "Calendar",
 
 
 def same_output(a: Path, b: Path) -> bool:
-    """Byte equality, except for .xlsx where the zip members are compared: the container
-    header fields differ between Python builds, the content must not."""
+    """Byte equality, except for .xlsx where the zip members are compared (the container header
+    fields differ between Python builds) and XML members are compared in canonical form (lxml and
+    the stdlib serialiser differ in namespace placement). The content must not differ."""
     if a.suffix != ".xlsx":
         return a.read_bytes() == b.read_bytes()
     import zipfile
@@ -24,6 +25,11 @@ def same_output(a: Path, b: Path) -> bool:
         assert za.namelist() == zb.namelist(), (za.namelist(), zb.namelist())
         for n in za.namelist():
             x, y = za.read(n), zb.read(n)
+            if x != y and n.endswith(".xml"):
+                # lxml and the stdlib serialiser place namespace declarations differently; compare canonical XML
+                from xml.etree.ElementTree import canonicalize
+                if canonicalize(x.decode("utf-8")) == canonicalize(y.decode("utf-8")):
+                    continue
             if x != y:
                 i = next(k for k in range(min(len(x), len(y)) + 1) if k >= min(len(x), len(y)) or x[k] != y[k])
                 raise AssertionError(f"{n} differs at byte {i}: {x[max(0, i-80):i+80]!r} != {y[max(0, i-80):i+80]!r}")
