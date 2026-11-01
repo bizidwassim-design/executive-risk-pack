@@ -14,18 +14,27 @@ from roll_quarter import COPIES, roll_file
 SHEETS = ["Summary", "CSF Profile", "Top Risks", "Heat Map", "KRIs", "Calendar", "Decisions", "Scales"]
 
 
+def same_output(a: Path, b: Path) -> bool:
+    """Byte equality, except for .xlsx where the zip members are compared: the container
+    header fields differ between Python builds, the content must not."""
+    if a.suffix != ".xlsx":
+        return a.read_bytes() == b.read_bytes()
+    import zipfile
+    with zipfile.ZipFile(a) as za, zipfile.ZipFile(b) as zb:
+        return za.namelist() == zb.namelist() and all(za.read(n) == zb.read(n) for n in za.namelist())
+
 def test_build_is_deterministic(tmp_path: Path) -> None:
     a, b = tmp_path / "a", tmp_path / "b"
     build(ROOT / "data", a, charts=False)
     build(ROOT / "data", b, charts=False)
     for name in ("board-pack.md", "board-pack.xlsx", "charts/chart-data.json"):
-        assert (a / name).read_bytes() == (b / name).read_bytes(), name
+        assert same_output(a / name, b / name), name
 
 
 def test_committed_pack_matches_data(tmp_path: Path) -> None:
     build(ROOT / "data", tmp_path, charts=False)
     for name in ("board-pack.md", "board-pack.xlsx", "charts/chart-data.json"):
-        assert (tmp_path / name).read_bytes() == (ROOT / "pack" / name).read_bytes(), \
+        assert same_output(tmp_path / name, ROOT / "pack" / name), \
             f"pack/{name} is stale: run python scripts/build_pack.py"
 
 
