@@ -25,7 +25,7 @@ def same_output(a: Path, b: Path) -> bool:
         assert za.namelist() == zb.namelist(), (za.namelist(), zb.namelist())
         for n in za.namelist():
             x, y = za.read(n), zb.read(n)
-            if x != y and n.endswith(".xml"):
+            if x != y and n.endswith((".xml", ".rels")):
                 # lxml and the stdlib serialiser place namespace declarations differently; compare canonical XML
                 from xml.etree.ElementTree import canonicalize
                 if canonicalize(x.decode("utf-8")) == canonicalize(y.decode("utf-8")):
