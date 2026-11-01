@@ -29,7 +29,11 @@ jobs:
         run: python scripts/build_pack.py
 
       - name: Committed pack must match the data
-        run: git diff --exit-code -- pack/board-pack.md pack/board-pack.xlsx pack/charts/chart-data.json
+        # The workbook is compared by content in tests/test_build.py (serialisers differ in XML whitespace
+        # and namespace placement between platforms); here the text outputs must be byte-identical.
+        run: |
+          git checkout -- pack/board-pack.xlsx
+          git diff --exit-code -- pack/board-pack.md pack/charts/chart-data.json
 
       - name: No generated file left uncommitted
         run: |
