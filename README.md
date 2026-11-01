@@ -123,6 +123,13 @@ fictional; any resemblance to a real organisation is coincidental. Standards and
 PCI DSS v4.0.1, ISO/IEC 27001:2022, UAE PDPL, UAE Information Assurance Regulation) are referenced by name and
 identifier only; check the current official texts and your own obligations before relying on any date or requirement.
 
+## AI assistance
+
+Built with Claude Code as a coding and writing assistant, which is why it appears as a co-author on some commits.
+**Editor and reviewer: Wassim Bizid**, who set the scope, the frameworks and the GRC approach, edited the content
+and decided what was published. Automated tests in CI check the published outputs. This is a maintainer review,
+not an independent one.
+
 ## License
 
 [MIT](LICENSE) — free to use, copy, modify and redistribute.
