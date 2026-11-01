@@ -1,0 +1,96 @@
+# Organisation profile, reporting period, scales and risk appetite.
+# Everything in this file is fictional. Fabrikam Payments LLC is not a real company.
+
+organisation:
+  name: Fabrikam Payments LLC
+  short_name: Fabrikam
+  sector: Payments and fintech (merchant acquiring, card processing, digital wallets)
+  headquarters: Dubai, United Arab Emirates
+  staff: 600
+  technology: Cloud-first on Microsoft 365 and Azure; payments platform on Azure Kubernetes Service
+  regulatory_scope:
+    - PCI DSS v4.0.1 (Level 1 service provider)
+    - UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021)
+    - UAE Information Assurance Regulation
+    - ISO/IEC 27001:2022 certification (held since 2025)
+
+report:
+  title: Quarterly Cyber Risk Report to the Board
+  quarter: Q3 2026
+  period_start: 2026-07-01
+  period_end: 2026-09-30
+  board_meeting: 2026-11-12
+  prepared_by: Chief Information Security Officer
+  presented_to: Board Risk Committee
+  classification: Board confidential (sample pack, fictional data)
+  currency: AED
+  target_profile_by: December 2027   # when the target CSF profile should be reached
+  look_ahead_days: 90          # "coming up before the next board meeting"
+  calendar_window_start: 2026-10-01
+  calendar_window_end: 2027-09-30
+  calendar_must_include:       # validation: the calendar must mention each of these
+    - PCI DSS
+    - UAE Information Assurance
+    - PDPL
+    - ISO/IEC 27001
+    - penetration test
+    - tabletop
+
+# What the CISO wants the board to remember. Keep it to three short sentences.
+# Numbers are not typed here: the build script computes them from the data files.
+narrative:
+  - Identity and detection controls improved this quarter, and fewer critical weaknesses are exposed to the internet.
+  - Our ability to recover the payments platform after a major attack has weakened and is now our most urgent gap.
+  - Supplier security reviews are behind schedule, so we are carrying more third-party risk than we accept.
+
+# 0-5 maturity scale used for every NIST CSF 2.0 category.
+maturity_scale:
+  0: Absent - no practice in place
+  1: Ad hoc - depends on individuals, not repeatable
+  2: Developing - partly documented, applied inconsistently
+  3: Defined - documented, owned and applied across the company
+  4: Managed - measured, reviewed and improved on evidence
+  5: Optimised - continuously tuned, benchmarked against peers
+
+# Gap bands for target minus current, in maturity points.
+gap_bands:
+  - {max_gap: 0.0, label: At target}
+  - {max_gap: 0.5, label: Close}
+  - {max_gap: 1.0, label: Gap}
+  - {max_gap: 5.0, label: Priority gap}
+
+likelihood_scale:
+  1: Rare - less than once in ten years
+  2: Unlikely - once in five to ten years
+  3: Possible - once in two to five years
+  4: Likely - about once a year
+  5: Almost certain - several times a year
+
+impact_scale:
+  1: Minor - loss below AED 0.5m, no customer impact, no regulatory interest
+  2: Moderate - loss AED 0.5m to 2m, or a few hours of degraded service
+  3: Significant - loss AED 2m to 8m, or up to one day of payment disruption, or a regulator enquiry
+  4: Major - loss AED 8m to 25m, or several days of disruption, or a formal regulatory finding
+  5: Severe - loss above AED 25m, or a week of disruption, or a threat to our licence or card-scheme registration
+
+# Score = likelihood x impact (1-25). Upper bound of each band.
+risk_bands:
+  - {max_score: 4, label: Low}
+  - {max_score: 9, label: Medium}
+  - {max_score: 16, label: High}
+  - {max_score: 25, label: Critical}
+
+# Highest residual score the board is willing to carry, by risk category.
+# Approved by the board on 2026-03-18 (fictional).
+risk_appetite:
+  Cyber: 9
+  Regulatory: 6
+  Data protection: 6
+  Third party: 9
+  Resilience: 8
+  People: 9
+  Technology: 9
+
+# A KRI change smaller than this share of the distance between its green and red
+# thresholds is reported as "Stable".
+kri_stable_share: 0.10

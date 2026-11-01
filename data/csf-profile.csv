@@ -1,0 +1,23 @@
+function,category_id,category_name,current,target,last_quarter,evidence
+Govern,GV.OC,Organizational Context,3.0,4.0,3.0,Regulatory obligations and critical services are documented; the mapping to business objectives is still annual rather than continuous.
+Govern,GV.RM,Risk Management Strategy,2.5,4.0,2.0,Board approved a risk appetite in March; risk tolerances are not yet set for every category.
+Govern,GV.RR,"Roles, Responsibilities, and Authorities",3.0,4.0,3.0,Risk owners are named for all top risks; security objectives are not yet in executive scorecards.
+Govern,GV.PO,Policy,3.5,4.0,3.5,Policy set reviewed in 2026; an acceptable-use rule for AI tools is still missing.
+Govern,GV.OV,Oversight,2.0,3.5,2.0,The board receives a quarterly pack; outcomes of risk decisions are not yet tracked to closure.
+Govern,GV.SC,Cybersecurity Supply Chain Risk Management,2.0,3.5,2.0,Critical suppliers are tiered but six assessments are overdue; contract security clauses vary.
+Identify,ID.AM,Asset Management,3.0,4.0,2.5,Cloud asset inventory is now automated; shadow SaaS discovery covers about 70 percent of spend.
+Identify,ID.RA,Risk Assessment,3.0,4.0,3.0,Quarterly risk reviews run for all business units; threat intelligence feeds only part of the scoring.
+Identify,ID.IM,Improvement,2.5,3.5,2.5,Lessons from incidents and tests are captured but follow-up actions are tracked manually.
+Protect,PR.AA,"Identity Management, Authentication, and Access Control",3.5,4.5,3.0,Phishing-resistant MFA covers most privileged accounts; just-in-time admin access is live in Azure.
+Protect,PR.AT,Awareness and Training,3.0,3.5,3.0,Role-based training for payments operations and developers; phishing simulations every month.
+Protect,PR.DS,Data Security,3.5,4.5,3.5,Card data is tokenised at entry; data loss prevention covers email and SharePoint but not all endpoints.
+Protect,PR.PS,Platform Security,3.0,4.0,3.0,Hardening baselines exist for all server images; patch deadlines are met for most but not all internet-facing systems.
+Protect,PR.IR,Technology Infrastructure Resilience,3.0,4.0,3.0,Production runs in two availability zones; no second-region capacity for the payments platform.
+Detect,DE.CM,Continuous Monitoring,3.5,4.0,3.0,All production subscriptions and Microsoft 365 now send logs to the SIEM; 24x7 coverage by a managed provider.
+Detect,DE.AE,Adverse Event Analysis,3.0,4.0,3.0,Detection rules are mapped to the top threats; alert tuning is still reactive.
+Respond,RS.MA,Incident Management,3.0,4.0,3.0,Incident plan tested in 2026; severity criteria agreed with the payments business.
+Respond,RS.AN,Incident Analysis,2.5,3.5,2.5,Forensic retainer in place; root-cause analysis is done for major incidents only.
+Respond,RS.CO,Incident Response Reporting and Communication,3.0,3.5,3.0,Regulator and card-scheme notification templates are approved; contact lists are reviewed quarterly.
+Respond,RS.MI,Incident Mitigation,3.0,4.0,3.0,Containment playbooks exist for ransomware and account takeover; containment time rose this quarter.
+Recover,RC.RP,Incident Recovery Plan Execution,2.0,4.0,2.5,Restore tests failed for 2 of 10 critical systems; no tested full rebuild of the payments platform.
+Recover,RC.CO,Incident Recovery Communication,2.5,3.5,2.5,Merchant communication plan exists; it has not been rehearsed with the customer service team.

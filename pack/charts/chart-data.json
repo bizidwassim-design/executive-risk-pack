@@ -1,0 +1,113 @@
+{
+  "csf_functions": [
+    {
+      "current": 2.7,
+      "function": "Govern",
+      "last_quarter": 2.6,
+      "target": 3.8
+    },
+    {
+      "current": 2.8,
+      "function": "Identify",
+      "last_quarter": 2.7,
+      "target": 3.8
+    },
+    {
+      "current": 3.2,
+      "function": "Protect",
+      "last_quarter": 3.1,
+      "target": 4.1
+    },
+    {
+      "current": 3.3,
+      "function": "Detect",
+      "last_quarter": 3.0,
+      "target": 4.0
+    },
+    {
+      "current": 2.9,
+      "function": "Respond",
+      "last_quarter": 2.9,
+      "target": 3.8
+    },
+    {
+      "current": 2.3,
+      "function": "Recover",
+      "last_quarter": 2.5,
+      "target": 3.8
+    }
+  ],
+  "quarter": "Q3 2026",
+  "residual_heatmap": [
+    {
+      "band": "High",
+      "id": "R01",
+      "impact": 4,
+      "likelihood": 3,
+      "score": 12
+    },
+    {
+      "band": "High",
+      "id": "R02",
+      "impact": 5,
+      "likelihood": 2,
+      "score": 10
+    },
+    {
+      "band": "High",
+      "id": "R03",
+      "impact": 4,
+      "likelihood": 4,
+      "score": 16
+    },
+    {
+      "band": "Medium",
+      "id": "R04",
+      "impact": 4,
+      "likelihood": 2,
+      "score": 8
+    },
+    {
+      "band": "Medium",
+      "id": "R05",
+      "impact": 4,
+      "likelihood": 2,
+      "score": 8
+    },
+    {
+      "band": "Medium",
+      "id": "R06",
+      "impact": 3,
+      "likelihood": 2,
+      "score": 6
+    },
+    {
+      "band": "Medium",
+      "id": "R07",
+      "impact": 4,
+      "likelihood": 2,
+      "score": 8
+    },
+    {
+      "band": "High",
+      "id": "R08",
+      "impact": 4,
+      "likelihood": 3,
+      "score": 12
+    },
+    {
+      "band": "Medium",
+      "id": "R09",
+      "impact": 3,
+      "likelihood": 2,
+      "score": 6
+    },
+    {
+      "band": "Medium",
+      "id": "R10",
+      "impact": 3,
+      "likelihood": 3,
+      "score": 9
+    }
+  ]
+}

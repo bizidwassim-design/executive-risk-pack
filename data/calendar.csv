@@ -1,0 +1,15 @@
+start,end,activity,type,driver,owner,status,board_note
+2026-11-16,2026-11-20,External penetration test of the payments API and merchant portal,Test,PCI DSS v4.0.1 requirement 11.4,Head of Payments Engineering,Booked,Critical findings must be fixed before the PCI DSS assessor arrives in February.
+2026-12-07,2026-12-07,Quarterly external vulnerability scan by an approved scanning vendor,Test,PCI DSS v4.0.1 requirement 11.3.2,Head of IT Infrastructure,Booked,A passing scan is needed every quarter.
+2026-12-10,2026-12-10,Ransomware tabletop exercise with the executive committee,Exercise,NIST CSF 2.0 RS.MA and RC.RP,Chief Information Security Officer,Planned,Board members are invited to observe the second half.
+2027-01-18,2027-01-29,PDPL records of processing refresh and impact assessment for the new merchant app,Regulatory,UAE PDPL (Federal Decree-Law No. 45 of 2021),Data Protection Officer,In preparation,Closes the main open action under risk R06.
+2027-02-08,2027-02-26,PCI DSS annual assessment by a Qualified Security Assessor,Assessment,PCI DSS v4.0.1,Chief Compliance Officer,Booked,Report on Compliance due to our acquiring banks by 31 March 2027.
+2027-03-08,2027-03-08,Quarterly external vulnerability scan by an approved scanning vendor,Test,PCI DSS v4.0.1 requirement 11.3.2,Head of IT Infrastructure,Booked,
+2027-04-15,2027-04-15,UAE Information Assurance Regulation annual self-assessment,Regulatory,UAE Information Assurance Regulation,Chief Information Security Officer,Planned,Results come to the board in the Q1 2027 pack.
+2027-05-10,2027-05-12,ISO/IEC 27001 surveillance audit by the certification body,Audit,ISO/IEC 27001:2022,Chief Information Security Officer,Booked,Year two of the certification cycle. Two minor findings from 2026 are closed.
+2027-06-07,2027-06-07,Quarterly external vulnerability scan by an approved scanning vendor,Test,PCI DSS v4.0.1 requirement 11.3.2,Head of IT Infrastructure,Booked,
+2027-06-14,2027-06-18,Full recovery test of the payments platform in a second Azure region,Test,NIST CSF 2.0 RC.RP,Chief Technology Officer,Conditional,Only possible if the board approves decision D2.
+2027-07-05,2027-07-09,PDPL annual review of breach notification and customer request handling,Regulatory,UAE PDPL (Federal Decree-Law No. 45 of 2021),Data Protection Officer,Planned,
+2027-08-16,2027-08-27,Internal penetration test and segmentation test of the card-data environment,Test,PCI DSS v4.0.1 requirement 11.4,Head of Payments Engineering,Planned,
+2027-09-06,2027-09-06,Quarterly external vulnerability scan by an approved scanning vendor,Test,PCI DSS v4.0.1 requirement 11.3.2,Head of IT Infrastructure,Planned,
+2027-09-20,2027-09-20,Data breach tabletop exercise with the board,Exercise,Board oversight of cyber risk,Chief Information Security Officer,Planned,Two hours. Board members play their own roles.

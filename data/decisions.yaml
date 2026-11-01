@@ -1,0 +1,129 @@
+# Decisions the board is asked to take this quarter.
+# Costs are in the currency set in organisation.yaml (AED). All figures are fictional.
+# type must be one of: Risk acceptance, Budget, Policy exception.
+
+decisions:
+  - id: D1
+    type: Risk acceptance
+    title: Accept the risk from the old reconciliation server until 30 June 2027
+    linked_risks: [R01]
+    decide_by: 2026-11-12
+    context: >-
+      One back-office server that reconciles daily settlement files runs an operating system that no longer
+      receives security updates. It sits outside the card-data environment. Its replacement is part of the
+      finance system upgrade that goes live in June 2027. Until then, a successful attack on this server
+      could help ransomware spread to other systems.
+    options:
+      - id: A
+        label: Accept with conditions until 30 June 2027
+        description: >-
+          Keep the server, isolate it on its own network segment, allow only two named connections, add
+          extra monitoring, and take a daily offline copy of its data.
+        cost_min: 40000
+        cost_max: 60000
+        effect: Residual risk stays within appetite for this asset. Formal acceptance closes an audit observation.
+      - id: B
+        label: Bring the replacement forward to March 2027
+        description: Pay the finance-system vendor for extra people to finish the migration three months early.
+        cost_min: 350000
+        cost_max: 450000
+        effect: Removes the exposure three months sooner, but the extra cost is not in the 2026 or 2027 budget.
+      - id: C
+        label: Switch the server off now
+        description: Reconcile settlement files by hand until June 2027.
+        cost_min: 120000
+        cost_max: 180000
+        effect: Removes the exposure today but adds manual work and a higher chance of settlement errors.
+    recommendation: A
+    rationale: >-
+      Option A cuts the realistic attack paths to almost none for a small cost. The three months gained by
+      option B do not justify eight times the cost.
+    if_declined: >-
+      The server stays as it is without formal acceptance. The ISO/IEC 27001 auditor will raise it again
+      in May 2027, and the ransomware risk (R01) keeps an easy entry point.
+    proposed_resolution: >-
+      The board accepts the residual risk from the reconciliation server until 30 June 2027, on the
+      conditions in option A, and asks the CISO to confirm decommissioning in the Q2 2027 pack.
+
+  - id: D2
+    type: Budget
+    title: Fund a recovery environment for the payments platform in a second Azure region
+    linked_risks: [R01, R08]
+    decide_by: 2026-11-12
+    context: >-
+      Today we could rebuild the payments platform after a destructive attack, but our best estimate is
+      three to five days. Merchant contracts allow four hours. Restore tests failed for two of ten critical
+      systems this quarter. This is the main reason risk R08 moved from Medium to High.
+    options:
+      - id: A
+        label: Full programme in 2027
+        description: >-
+          Backups that cannot be changed or deleted, a standby environment in a second Azure region, and two
+          full recovery tests a year. Target recovery time of four hours by the end of June 2027.
+        cost_min: 2400000
+        cost_max: 2900000
+        effect: R08 falls from 12 (High) to an expected 6 (Medium), inside appetite. R01 falls from 12 to an expected 8.
+      - id: B
+        label: Backups only in 2027, standby region in 2028
+        description: Buy the protected backups now and defer the second region by a year.
+        cost_min: 1300000
+        cost_max: 1600000
+        effect: Data is safe, but recovery still takes days. R08 falls to an expected 9, still above appetite.
+      - id: C
+        label: Defer to the 2028 budget
+        description: No new spending. Keep improving restore tests within the current budget.
+        cost_min: 0
+        cost_max: 0
+        effect: R08 stays at 12 (High), outside appetite, for at least another year.
+    recommendation: A
+    rationale: >-
+      One day of lost processing costs about AED 3m to 4m. A single serious incident would cost more than the
+      programme. Option A is the only option that brings recovery inside our contractual promise to merchants.
+    if_declined: >-
+      We keep a recovery time of days against a promise of hours. A serious ransomware event could breach
+      merchant contracts, trigger penalties and invite questions from the regulator about our resilience.
+    proposed_resolution: >-
+      The board approves up to AED 2.9m in 2027 for the payments platform recovery programme (option A), with
+      progress reported in each quarterly pack.
+
+  - id: D3
+    type: Policy exception
+    title: Allow a six-month governed pilot of an enterprise AI assistant
+    linked_risks: [R10]
+    decide_by: 2026-11-12
+    context: >-
+      Our acceptable-use policy bans putting any confidential data into external AI services. Staff surveys and
+      web-traffic data show the ban is widely ignored, mostly by analysts and developers. A ban that is not
+      followed gives us the risk without any of the control.
+    options:
+      - id: A
+        label: Time-boxed exception with guardrails
+        description: >-
+          Allow 80 named staff to use one enterprise AI service inside our Microsoft 365 tenant for six months.
+          No cardholder data. Customer data only after a data protection impact assessment. Data loss
+          prevention blocks every other AI website.
+        cost_min: 150000
+        cost_max: 250000
+        effect: R10 falls from 9 to an expected 6. We learn what a permanent policy should say.
+      - id: B
+        label: Keep the ban and enforce it
+        description: Block all AI websites and treat breaches as disciplinary matters.
+        cost_min: 30000
+        cost_max: 50000
+        effect: Lower cost, but likely to push use onto personal phones where we see nothing.
+      - id: C
+        label: Broad exception for all staff
+        description: Lift the ban for everyone without the impact assessment or blocking controls.
+        cost_min: 100000
+        cost_max: 150000
+        effect: Fast, but customer data would flow to AI services we have not assessed. R10 would likely rise.
+    recommendation: A
+    rationale: >-
+      Option A replaces hidden use with visible, controlled use and gives the board facts for a permanent
+      policy in mid-2027.
+    if_declined: >-
+      Unapproved AI use continues out of sight. Customer data could leave the company without any record,
+      which would be hard to defend to the data protection regulator.
+    proposed_resolution: >-
+      The board approves a six-month exception to the acceptable-use policy for a governed AI pilot on the
+      conditions in option A, and asks for a permanent policy proposal by June 2027.

@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-build-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned dependencies
+        run: pip install -r requirements.txt pytest
+
+      - name: Validate the data (scores in range, owners, thresholds, recommendations, links, calendar coverage)
+        run: python scripts/validate_data.py
+
+      - name: Unit tests
+        run: pytest -q
+
+      - name: Rebuild the board pack, workbook and charts
+        run: python scripts/build_pack.py
+
+      - name: Committed pack must match the data
+        run: git diff --exit-code -- pack/board-pack.md pack/board-pack.xlsx pack/charts/chart-data.json
+
+      - name: No generated file left uncommitted
+        run: |
+          untracked=$(git status --porcelain --untracked-files=all -- pack | grep '^??' || true)
+          if [ -n "$untracked" ]; then echo "Generated but not committed:"; echo "$untracked"; exit 1; fi
+
+      - name: Workbook opens, has every sheet and no macros; charts are real PNGs
+        run: |
+          python - <<'EOF'
+          import struct
+          from openpyxl import load_workbook
+
+          wb = load_workbook("pack/board-pack.xlsx")
+          expected = ["Summary", "CSF Profile", "Top Risks", "Heat Map", "KRIs", "Calendar", "Decisions", "Scales"]
+          assert wb.sheetnames == expected, wb.sheetnames
+          assert not getattr(wb, "vba_archive", None), "workbook must not contain macros"
+          risks = [r[0].value for r in wb["Top Risks"].iter_rows(min_row=5, max_col=1) if r[0].value]
+          kris = [r[0].value for r in wb["KRIs"].iter_rows(min_row=5, max_col=1) if r[0].value]
+          assert len(risks) == 10, risks
+          assert 10 <= len(kris) <= 12, kris
+
+          for name in ("csf-current-vs-target.png", "residual-risk-heatmap.png"):
+              with open(f"pack/charts/{name}", "rb") as fh:
+                  head = fh.read(24)
+              assert head[:8] == b"\x89PNG\r\n\x1a\n", name
+              width, height = struct.unpack(">II", head[16:24])
+              assert width >= 800 and height >= 500, (name, width, height)
+              print("OK:", name, width, "x", height)
+          print("OK:", wb.sheetnames, len(risks), "risks,", len(kris), "KRIs")
+          EOF
+
+      - name: Validator rejects broken data
+        run: |
+          cp -r data /tmp/broken
+          sed -i 's/,People,Chief People Officer,/,People,,/' /tmp/broken/risks.csv
+          grep -q ',People,,' /tmp/broken/risks.csv
+          if python scripts/validate_data.py --data /tmp/broken; then echo "validator accepted a risk without an owner"; exit 1; fi

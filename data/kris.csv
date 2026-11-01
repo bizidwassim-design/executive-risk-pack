@@ -1,0 +1,13 @@
+id,name,what_it_tells_the_board,unit,direction,green_threshold,red_threshold,current,last_quarter,decimals,owner,csf_function,linked_risks
+KRI-01,Critical internet-facing weaknesses past their fix deadline,How many open doors an attacker could find with a simple scan.,count,higher_is_worse,2,8,5,9,0,Head of IT Infrastructure,Identify,R01;R02
+KRI-02,Phishing simulation click rate,Share of staff who clicked a simulated phishing link this quarter.,%,higher_is_worse,4,10,3.8,5.2,1,Chief Information Security Officer,Protect,R09
+KRI-03,Privileged accounts without phishing-resistant MFA,Administrator accounts that a stolen password and a fake login page could still take over.,count,higher_is_worse,0,5,3,7,0,Head of IT Infrastructure,Protect,R04
+KRI-04,Median time to contain a high-severity incident,How long an attacker stays active once we have spotted them.,hours,higher_is_worse,4,24,9.5,7.0,1,Head of Security Operations,Respond,R01;R08
+KRI-05,Laptops and servers protected by endpoint detection,Share of devices where we would see and stop an attack in progress.,%,lower_is_worse,98,92,96.4,95.1,1,Head of IT Infrastructure,Detect,R01
+KRI-06,Card-data systems failing the hardening baseline,Share of systems in the card-data environment that drift from the secure build. PCI DSS assessors test this.,%,higher_is_worse,2,8,1.8,2.6,1,Head of Payments Engineering,Protect,R02;R05
+KRI-07,Critical suppliers with an overdue security review,Suppliers we depend on whose security we have not checked on schedule.,count,higher_is_worse,1,4,6,4,0,Chief Operating Officer,Govern,R03
+KRI-08,Restore tests that succeeded for critical systems,Share of critical systems we proved we can bring back from backup this quarter.,%,lower_is_worse,95,85,80,92,0,Chief Technology Officer,Recover,R01;R08
+KRI-09,Microsoft 365 and Azure secure configuration score,How closely our cloud settings follow the recommended secure configuration.,%,lower_is_worse,80,65,81,74,0,Head of IT Infrastructure,Protect,R04
+KRI-10,Customer data requests answered late,Requests from customers about their personal data that missed the legal deadline this quarter.,count,higher_is_worse,0,2,1,0,0,Data Protection Officer,Govern,R06
+KRI-11,Leavers whose access stayed active over 24 hours,People who left the company but could still log in the next day.,count,higher_is_worse,0,3,0,5,0,Chief People Officer,Protect,R07
+KRI-12,High-risk cloud misconfigurations open over 30 days,Serious cloud setting errors that have not been fixed within a month.,count,higher_is_worse,3,10,12,15,0,Head of Cloud Platform,Protect,R02;R04
