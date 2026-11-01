@@ -21,7 +21,13 @@ def same_output(a: Path, b: Path) -> bool:
         return a.read_bytes() == b.read_bytes()
     import zipfile
     with zipfile.ZipFile(a) as za, zipfile.ZipFile(b) as zb:
-        return za.namelist() == zb.namelist() and all(za.read(n) == zb.read(n) for n in za.namelist())
+        assert za.namelist() == zb.namelist(), (za.namelist(), zb.namelist())
+        for n in za.namelist():
+            x, y = za.read(n), zb.read(n)
+            if x != y:
+                i = next(k for k in range(min(len(x), len(y)) + 1) if k >= min(len(x), len(y)) or x[k] != y[k])
+                raise AssertionError(f"{n} differs at byte {i}: {x[max(0, i-80):i+80]!r} != {y[max(0, i-80):i+80]!r}")
+        return True
 
 def test_build_is_deterministic(tmp_path: Path) -> None:
     a, b = tmp_path / "a", tmp_path / "b"
